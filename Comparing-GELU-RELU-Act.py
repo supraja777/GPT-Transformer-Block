@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
 import matplotlib.pyplot as plt
+from gelu_activation import GELU
 
 # Unlike ReLU, which outputs zero for any negative input, 
 # GELU allows for a small, non-zero output for negative values. 
@@ -11,16 +12,6 @@ import matplotlib.pyplot as plt
 # sometimes make optimization harder, especially in networks that are very deep or 
 # have complex architectures.
 
-class GELU(nn.Module):
-    def __init__(self):
-        super().__init__()
-    
-    def forward(self, x):
-        return 0.5 * x * (1 + torch.tanh(
-            torch.sqrt(torch.tensor(2.0 / torch.pi)) * 
-            (x + 0.044715 * torch.pow(x, 3))
-        )) 
-    
 gelu, relu = GELU(), nn.ReLU()
 
 x = torch.linspace(-3, 3, 100)     #1
