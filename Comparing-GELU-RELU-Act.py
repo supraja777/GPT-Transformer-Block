@@ -2,6 +2,15 @@ import torch
 import torch.nn as nn
 import matplotlib.pyplot as plt
 
+# Unlike ReLU, which outputs zero for any negative input, 
+# GELU allows for a small, non-zero output for negative values. 
+
+# The smoothness of GELU can lead to better optimization properties during training, 
+# as it allows for more nuanced adjustments to the model’s parameters. 
+# In contrast, ReLU has a sharp corner at zero (figure 4.18, right), which can 
+# sometimes make optimization harder, especially in networks that are very deep or 
+# have complex architectures.
+
 class GELU(nn.Module):
     def __init__(self):
         super().__init__()
