@@ -16,6 +16,12 @@ class GPTDatasetV1(Dataset):
             target_chunk = token_ids[i + 1: i + max_length + 1]
             self.input_ids.append(torch.tensor(input_chunk))
             self.target_ids.append(torch.tensor(target_chunk))
+        
+    def __len__(self):
+        return len(self.input_ids)
+    
+    def __getitem__(self, index):
+        return self.input_ids[index], self.target_ids[index]
 
 def create_dataloader_v1(txt, batch_size, max_length, stride, shuffle = True, drop_last = True, num_workers = 0):
     # Create tokenizer
