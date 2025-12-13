@@ -17,26 +17,26 @@ def generate_text_simple(model, idx, max_new_tokens, context_size):
     return idx
 
 
-start_context = "Hello, I am"
-tokenizer = tiktoken.get_encoding("gpt2")
-encoded = tokenizer.encode(start_context)
-print("Encoded: ", encoded)
-encoded_tensor = torch.tensor(encoded, dtype=torch.long).unsqueeze(0)
-print("encoded_tensor.shape : ", encoded_tensor.shape)
+# start_context = "Hello, I am"
+# tokenizer = tiktoken.get_encoding("gpt2")
+# encoded = tokenizer.encode(start_context)
+# print("Encoded: ", encoded)
+# encoded_tensor = torch.tensor(encoded, dtype=torch.long).unsqueeze(0)
+# print("encoded_tensor.shape : ", encoded_tensor.shape)
 
-model = GPTModel(GPT_CONFIG_124M)
+# model = GPTModel(GPT_CONFIG_124M)
 
-#model.eval()
-out = generate_text_simple(
-    model=model,
-    idx=encoded_tensor,
-    max_new_tokens=6,
-    context_size=GPT_CONFIG_124M["context_length"]
-)
+# #model.eval()
+# out = generate_text_simple(
+#     model=model,
+#     idx=encoded_tensor,
+#     max_new_tokens=6,
+#     context_size=GPT_CONFIG_124M["context_length"]
+# )
 
-print("Output : ", out)
-print("Output length: ", len(out[0]))
+# print("Output : ", out)
+# print("Output length: ", len(out[0]))
 
-# Decoding the text back
-decoded_text = tokenizer.decode(out.squeeze(0).tolist())
-print(decoded_text)
+# # Decoding the text back
+# decoded_text = tokenizer.decode(out.squeeze(0).tolist())
+# print(decoded_text)
